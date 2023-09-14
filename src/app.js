@@ -7,9 +7,11 @@ const app = express();
 //init middleware
 app.use(morgan("dev")) // in ra logger
 app.use(helmet()) // bao ve server, khong cho ben thu ba tan cong...
-app.use(compression())
+app.use(compression()) // Giúp dữ liệu tải lên server ít hơn nhiều lần...
 //init db
-
+require("./dbs/init.mongoodb")
+const { checkOverload } = require("./helpers/check.connect")
+checkOverload()
 //handling errors
 
 //init routes
